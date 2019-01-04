@@ -1,0 +1,1072 @@
+
+% Default to the notebook output style
+
+    
+
+
+% Inherit from the specified cell style.
+
+
+
+
+    
+\documentclass[11pt]{article}
+
+    
+    
+    \usepackage[T1]{fontenc}
+    % Nicer default font (+ math font) than Computer Modern for most use cases
+    \usepackage{mathpazo}
+
+    % Basic figure setup, for now with no caption control since it's done
+    % automatically by Pandoc (which extracts ![](path) syntax from Markdown).
+    \usepackage{graphicx}
+    % We will generate all images so they have a width \maxwidth. This means
+    % that they will get their normal width if they fit onto the page, but
+    % are scaled down if they would overflow the margins.
+    \makeatletter
+    \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth
+    \else\Gin@nat@width\fi}
+    \makeatother
+    \let\Oldincludegraphics\includegraphics
+    % Set max figure width to be 80% of text width, for now hardcoded.
+    \renewcommand{\includegraphics}[1]{\Oldincludegraphics[width=.8\maxwidth]{#1}}
+    % Ensure that by default, figures have no caption (until we provide a
+    % proper Figure object with a Caption API and a way to capture that
+    % in the conversion process - todo).
+    \usepackage{caption}
+    \DeclareCaptionLabelFormat{nolabel}{}
+    \captionsetup{labelformat=nolabel}
+
+    \usepackage{adjustbox} % Used to constrain images to a maximum size 
+    \usepackage{xcolor} % Allow colors to be defined
+    \usepackage{enumerate} % Needed for markdown enumerations to work
+    \usepackage{geometry} % Used to adjust the document margins
+    \usepackage{amsmath} % Equations
+    \usepackage{amssymb} % Equations
+    \usepackage{textcomp} % defines textquotesingle
+    % Hack from http://tex.stackexchange.com/a/47451/13684:
+    \AtBeginDocument{%
+        \def\PYZsq{\textquotesingle}% Upright quotes in Pygmentized code
+    }
+    \usepackage{upquote} % Upright quotes for verbatim code
+    \usepackage{eurosym} % defines \euro
+    \usepackage[mathletters]{ucs} % Extended unicode (utf-8) support
+    \usepackage[utf8x]{inputenc} % Allow utf-8 characters in the tex document
+    \usepackage{fancyvrb} % verbatim replacement that allows latex
+    \usepackage{grffile} % extends the file name processing of package graphics 
+                         % to support a larger range 
+    % The hyperref package gives us a pdf with properly built
+    % internal navigation ('pdf bookmarks' for the table of contents,
+    % internal cross-reference links, web links for URLs, etc.)
+    \usepackage{hyperref}
+    \usepackage{longtable} % longtable support required by pandoc >1.10
+    \usepackage{booktabs}  % table support for pandoc > 1.12.2
+    \usepackage[inline]{enumitem} % IRkernel/repr support (it uses the enumerate* environment)
+    \usepackage[normalem]{ulem} % ulem is needed to support strikethroughs (\sout)
+                                % normalem makes italics be italics, not underlines
+    
+
+    
+    
+    % Colors for the hyperref package
+    \definecolor{urlcolor}{rgb}{0,.145,.698}
+    \definecolor{linkcolor}{rgb}{.71,0.21,0.01}
+    \definecolor{citecolor}{rgb}{.12,.54,.11}
+
+    % ANSI colors
+    \definecolor{ansi-black}{HTML}{3E424D}
+    \definecolor{ansi-black-intense}{HTML}{282C36}
+    \definecolor{ansi-red}{HTML}{E75C58}
+    \definecolor{ansi-red-intense}{HTML}{B22B31}
+    \definecolor{ansi-green}{HTML}{00A250}
+    \definecolor{ansi-green-intense}{HTML}{007427}
+    \definecolor{ansi-yellow}{HTML}{DDB62B}
+    \definecolor{ansi-yellow-intense}{HTML}{B27D12}
+    \definecolor{ansi-blue}{HTML}{208FFB}
+    \definecolor{ansi-blue-intense}{HTML}{0065CA}
+    \definecolor{ansi-magenta}{HTML}{D160C4}
+    \definecolor{ansi-magenta-intense}{HTML}{A03196}
+    \definecolor{ansi-cyan}{HTML}{60C6C8}
+    \definecolor{ansi-cyan-intense}{HTML}{258F8F}
+    \definecolor{ansi-white}{HTML}{C5C1B4}
+    \definecolor{ansi-white-intense}{HTML}{A1A6B2}
+
+    % commands and environments needed by pandoc snippets
+    % extracted from the output of `pandoc -s`
+    \providecommand{\tightlist}{%
+      \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+    % Add ',fontsize=\small' for more characters per line
+    \newenvironment{Shaded}{}{}
+    \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+    \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+    \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+    \newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+    \newcommand{\RegionMarkerTok}[1]{{#1}}
+    \newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\NormalTok}[1]{{#1}}
+    
+    % Additional commands for more recent versions of Pandoc
+    \newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{{#1}}}
+    \newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{{#1}}}
+    \newcommand{\ImportTok}[1]{{#1}}
+    \newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{{#1}}}}
+    \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{{#1}}}
+    \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{{#1}}}
+    \newcommand{\BuiltInTok}[1]{{#1}}
+    \newcommand{\ExtensionTok}[1]{{#1}}
+    \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{{#1}}}
+    \newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{{#1}}}
+    \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    
+    
+    % Define a nice break command that doesn't care if a line doesn't already
+    % exist.
+    \def\br{\hspace*{\fill} \\* }
+    % Math Jax compatability definitions
+    \def\gt{>}
+    \def\lt{<}
+    % Document parameters
+    \title{credit\_evaluation\_notebook}
+    
+    
+    
+
+    % Pygments definitions
+    
+\makeatletter
+\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+    \let\PY@ul=\relax \let\PY@tc=\relax%
+    \let\PY@bc=\relax \let\PY@ff=\relax}
+\def\PY@tok#1{\csname PY@tok@#1\endcsname}
+\def\PY@toks#1+{\ifx\relax#1\empty\else%
+    \PY@tok{#1}\expandafter\PY@toks\fi}
+\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+
+\expandafter\def\csname PY@tok@w\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
+\expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ow\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@ne\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
+\expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@no\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ni\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
+\expandafter\def\csname PY@tok@na\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
+\expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@s\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@si\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sr\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@ss\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@gh\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gu\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gr\endcsname{\def\PY@tc##1{\textcolor[rgb]{1.00,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
+\expandafter\def\csname PY@tok@gs\endcsname{\let\PY@bf=\textbf}
+\expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@go\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
+\expandafter\def\csname PY@tok@gt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\expandafter\def\csname PY@tok@err\endcsname{\def\PY@bc##1{\setlength{\fboxsep}{0pt}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}
+\expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kd\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kr\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@fm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@vc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sa\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@dl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s2\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@mb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@il\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mo\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ch\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cpf\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+
+\def\PYZbs{\char`\\}
+\def\PYZus{\char`\_}
+\def\PYZob{\char`\{}
+\def\PYZcb{\char`\}}
+\def\PYZca{\char`\^}
+\def\PYZam{\char`\&}
+\def\PYZlt{\char`\<}
+\def\PYZgt{\char`\>}
+\def\PYZsh{\char`\#}
+\def\PYZpc{\char`\%}
+\def\PYZdl{\char`\$}
+\def\PYZhy{\char`\-}
+\def\PYZsq{\char`\'}
+\def\PYZdq{\char`\"}
+\def\PYZti{\char`\~}
+% for compatibility with earlier versions
+\def\PYZat{@}
+\def\PYZlb{[}
+\def\PYZrb{]}
+\makeatother
+
+
+    % Exact colors from NB
+    \definecolor{incolor}{rgb}{0.0, 0.0, 0.5}
+    \definecolor{outcolor}{rgb}{0.545, 0.0, 0.0}
+
+
+
+    
+    % Prevent overflowing lines due to hard-to-break entities
+    \sloppy 
+    % Setup hyperref package
+    \hypersetup{
+      breaklinks=true,  % so long urls are correctly broken across lines
+      colorlinks=true,
+      urlcolor=urlcolor,
+      linkcolor=linkcolor,
+      citecolor=citecolor,
+      }
+    % Slightly bigger margins than the latex defaults
+    
+    \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+    
+    
+
+    \begin{document}
+    
+    
+    \maketitle
+    
+    
+
+    
+    \section{Credit Evaluation Notebook}\label{credit-evaluation-notebook}
+
+    Import All required modules
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}1}]:} \PY{k+kn}{import} \PY{n+nn}{pandas} \PY{k}{as} \PY{n+nn}{pd}
+        \PY{k+kn}{import} \PY{n+nn}{sklearn} \PY{k}{as} \PY{n+nn}{sk}
+        \PY{k+kn}{import} \PY{n+nn}{seaborn} \PY{k}{as} \PY{n+nn}{sns}
+        \PY{k+kn}{from} \PY{n+nn}{scipy} \PY{k}{import} \PY{n}{stats}
+        \PY{k+kn}{import} \PY{n+nn}{numpy} \PY{k}{as} \PY{n+nn}{np}
+        \PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{preprocessing} \PY{k}{import} \PY{n}{LabelEncoder}
+        \PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{metrics} \PY{k}{import} \PY{n}{accuracy\PYZus{}score}\PY{p}{,} \PY{n}{log\PYZus{}loss}
+        \PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{neighbors} \PY{k}{import} \PY{n}{KNeighborsClassifier}
+        \PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{svm} \PY{k}{import} \PY{n}{SVC}\PY{p}{,} \PY{n}{LinearSVC}\PY{p}{,} \PY{n}{NuSVC}
+        \PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{tree} \PY{k}{import} \PY{n}{DecisionTreeClassifier}
+        \PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{ensemble} \PY{k}{import} \PY{n}{RandomForestClassifier}\PY{p}{,} \PY{n}{AdaBoostClassifier}\PY{p}{,} \PY{n}{GradientBoostingClassifier}
+        \PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{naive\PYZus{}bayes} \PY{k}{import} \PY{n}{GaussianNB}
+        \PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{discriminant\PYZus{}analysis} \PY{k}{import} \PY{n}{LinearDiscriminantAnalysis}
+        \PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{discriminant\PYZus{}analysis} \PY{k}{import} \PY{n}{QuadraticDiscriminantAnalysis}
+        \PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{model\PYZus{}selection} \PY{k}{import} \PY{n}{train\PYZus{}test\PYZus{}split}
+\end{Verbatim}
+
+
+    Load tarining data and read file
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}2}]:} \PY{n}{crdit\PYZus{}raw} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}csv}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{training.csv}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}3}]:} \PY{n}{crdit\PYZus{}raw}\PY{o}{.}\PY{n}{describe}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}3}]:}          customer\_id     est\_income      hold\_bal  pref\_cust\_prob  \textbackslash{}
+        count   10000.000000   10000.000000  10000.000000    10000.000000   
+        mean   496819.831400   65853.355259     20.962621        0.329419   
+        std    287391.314157   31093.369592     18.841121        0.223299   
+        min       244.000000       2.054543     -2.140206        0.001781   
+        25\%    245172.500000   39165.786086      6.150577        0.156965   
+        50\%    495734.000000   76903.628763     11.913366        0.272263   
+        75\%    745475.250000   91032.514900     32.238914        0.459890   
+        max    999870.000000  150538.809704     81.759632        1.144357   
+        
+                 imp\_cscore     RiskScore  imp\_crediteval    axio\_score  
+        count  10000.000000  10000.000000    10000.000000  10000.000000  
+        mean     662.548800    670.042869       25.692162      0.393211  
+        std       90.549985     89.965854        1.889274      0.288243  
+        min      500.000000    324.436647       21.363123     -0.000052  
+        25\%      600.000000    609.231181       24.295435      0.139424  
+        50\%      655.000000    669.493442       25.611903      0.337841  
+        75\%      727.000000    730.484985       27.062519      0.624886  
+        max      849.000000   1004.497869       30.131214      1.000000  
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}4}]:}  \PY{n}{crdit\PYZus{}raw}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}4}]:}    customer\_id demographic\_slice country\_reg ad\_exp    est\_income   hold\_bal  \textbackslash{}
+        0       713782           AX03efs           W      N  33407.901749   3.000000   
+        1       515901           AX03efs           E      N  19927.533533  20.257927   
+        2        95166           AX03efs           W      Y  51222.470997   4.000000   
+        3       425557           AX03efs           E      Y  67211.587467  18.653631   
+        4       624581           AX03efs           W      N  20093.342158   4.000000   
+        
+           pref\_cust\_prob  imp\_cscore   RiskScore  imp\_crediteval  axio\_score  \textbackslash{}
+        0        0.531112         619  503.249027       23.977827    0.137289   
+        1        0.297439         527  820.108146       22.986398    0.052264   
+        2        0.018463         606  586.605795       24.939219    0.452035   
+        3        0.089344         585  634.701982       24.841147    0.564619   
+        4        0.094948         567  631.949979       24.679363    0.917304   
+        
+           card\_offer  
+        0       False  
+        1       False  
+        2       False  
+        3       False  
+        4       False  
+\end{Verbatim}
+            
+    Now that we have an overview, dealing with each each column data and
+null values
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}5}]:} \PY{n}{crdit\PYZus{}raw}\PY{o}{.}\PY{n}{isnull}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{any}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}5}]:} customer\_id          False
+        demographic\_slice    False
+        country\_reg          False
+        ad\_exp               False
+        est\_income           False
+        hold\_bal             False
+        pref\_cust\_prob       False
+        imp\_cscore           False
+        RiskScore            False
+        imp\_crediteval       False
+        axio\_score           False
+        card\_offer           False
+        dtype: bool
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}6}]:} \PY{n}{crdit\PYZus{}raw}\PY{o}{.}\PY{n}{columns}\PY{p}{[}\PY{n}{crdit\PYZus{}raw}\PY{o}{.}\PY{n}{isnull}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{any}\PY{p}{(}\PY{p}{)}\PY{p}{]}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}6}]:} Index([], dtype='object')
+\end{Verbatim}
+            
+    There are no missing values, so no need to compute aor deal with missing
+values
+
+    We need to remove outliers if any from each column. This will ensure the
+results are not skewed
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}7}]:} \PY{n}{sns}\PY{o}{.}\PY{n}{boxplot}\PY{p}{(}\PY{n}{x}\PY{o}{=}\PY{n}{crdit\PYZus{}raw}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{est\PYZus{}income}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}7}]:} <matplotlib.axes.\_subplots.AxesSubplot at 0x1f72acef390>
+\end{Verbatim}
+            
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_12_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}8}]:} \PY{n}{sns}\PY{o}{.}\PY{n}{boxplot}\PY{p}{(}\PY{n}{x}\PY{o}{=}\PY{n}{crdit\PYZus{}raw}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{hold\PYZus{}bal}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}8}]:} <matplotlib.axes.\_subplots.AxesSubplot at 0x1f72ad93f98>
+\end{Verbatim}
+            
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_13_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}9}]:} \PY{n}{sns}\PY{o}{.}\PY{n}{boxplot}\PY{p}{(}\PY{n}{x}\PY{o}{=}\PY{n}{crdit\PYZus{}raw}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{pref\PYZus{}cust\PYZus{}prob}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}9}]:} <matplotlib.axes.\_subplots.AxesSubplot at 0x1f72b08a940>
+\end{Verbatim}
+            
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_14_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}10}]:} \PY{n}{sns}\PY{o}{.}\PY{n}{boxplot}\PY{p}{(}\PY{n}{x}\PY{o}{=}\PY{n}{crdit\PYZus{}raw}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{imp\PYZus{}cscore}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}10}]:} <matplotlib.axes.\_subplots.AxesSubplot at 0x1f72b0db358>
+\end{Verbatim}
+            
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_15_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}11}]:} \PY{n}{sns}\PY{o}{.}\PY{n}{boxplot}\PY{p}{(}\PY{n}{x}\PY{o}{=}\PY{n}{crdit\PYZus{}raw}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{RiskScore}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}11}]:} <matplotlib.axes.\_subplots.AxesSubplot at 0x1f72b141860>
+\end{Verbatim}
+            
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_16_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}12}]:} \PY{n}{sns}\PY{o}{.}\PY{n}{boxplot}\PY{p}{(}\PY{n}{x}\PY{o}{=}\PY{n}{crdit\PYZus{}raw}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{imp\PYZus{}crediteval}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}12}]:} <matplotlib.axes.\_subplots.AxesSubplot at 0x1f72b192e10>
+\end{Verbatim}
+            
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_17_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}13}]:} \PY{n}{sns}\PY{o}{.}\PY{n}{boxplot}\PY{p}{(}\PY{n}{x}\PY{o}{=}\PY{n}{crdit\PYZus{}raw}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{axio\PYZus{}score}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}13}]:} <matplotlib.axes.\_subplots.AxesSubplot at 0x1f72b0fb6a0>
+\end{Verbatim}
+            
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_18_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    We see there are outliers for the columns RiskScore, imp\_cscore and
+pref\_cust\_prob . So we will need to remove those from our training
+data
+
+    Box plot use the IQR method to display data and outliers(shape of the
+data) but in order to be get a list of identified outlier, we will need
+to use the mathematical formula and retrieve the outlier data.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}14}]:} \PY{n}{risk\PYZus{}score\PYZus{}Q1} \PY{o}{=} \PY{n}{crdit\PYZus{}raw}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{RiskScore}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{quantile}\PY{p}{(}\PY{l+m+mf}{0.25}\PY{p}{)}
+         \PY{n}{risk\PYZus{}score\PYZus{}Q3} \PY{o}{=} \PY{n}{crdit\PYZus{}raw}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{RiskScore}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{quantile}\PY{p}{(}\PY{l+m+mf}{0.75}\PY{p}{)}
+         \PY{n}{risk\PYZus{}score\PYZus{}IQR} \PY{o}{=} \PY{n}{risk\PYZus{}score\PYZus{}Q3} \PY{o}{\PYZhy{}} \PY{n}{risk\PYZus{}score\PYZus{}Q1}
+         \PY{n}{risk\PYZus{}score\PYZus{}min}\PY{o}{=}\PY{n}{risk\PYZus{}score\PYZus{}Q1} \PY{o}{\PYZhy{}} \PY{p}{(}\PY{n}{risk\PYZus{}score\PYZus{}IQR}\PY{o}{*}\PY{l+m+mf}{1.5}\PY{p}{)}
+         \PY{n}{risk\PYZus{}score\PYZus{}max}\PY{o}{=}\PY{n}{risk\PYZus{}score\PYZus{}Q3} \PY{o}{+} \PY{p}{(}\PY{n}{risk\PYZus{}score\PYZus{}IQR}\PY{o}{*}\PY{l+m+mf}{1.5}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{risk\PYZus{}score\PYZus{}IQR = }\PY{l+s+s2}{\PYZdq{}}\PY{o}{+}\PY{n+nb}{str}\PY{p}{(}\PY{n}{risk\PYZus{}score\PYZus{}IQR}\PY{p}{)}\PY{p}{)}
+         
+         
+         \PY{n}{imp\PYZus{}cscore\PYZus{}Q1} \PY{o}{=} \PY{n}{crdit\PYZus{}raw}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{imp\PYZus{}cscore}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{quantile}\PY{p}{(}\PY{l+m+mf}{0.25}\PY{p}{)}
+         \PY{n}{imp\PYZus{}cscore\PYZus{}Q3} \PY{o}{=} \PY{n}{crdit\PYZus{}raw}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{imp\PYZus{}cscore}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{quantile}\PY{p}{(}\PY{l+m+mf}{0.75}\PY{p}{)}
+         \PY{n}{imp\PYZus{}cscore\PYZus{}IQR} \PY{o}{=} \PY{n}{imp\PYZus{}cscore\PYZus{}Q3} \PY{o}{\PYZhy{}} \PY{n}{imp\PYZus{}cscore\PYZus{}Q1}
+         \PY{n}{imp\PYZus{}cscore\PYZus{}min}\PY{o}{=}\PY{n}{imp\PYZus{}cscore\PYZus{}Q1} \PY{o}{\PYZhy{}} \PY{p}{(}\PY{n}{imp\PYZus{}cscore\PYZus{}IQR}\PY{o}{*}\PY{l+m+mf}{1.5}\PY{p}{)}
+         \PY{n}{imp\PYZus{}cscore\PYZus{}max}\PY{o}{=}\PY{n}{imp\PYZus{}cscore\PYZus{}Q3} \PY{o}{+} \PY{p}{(}\PY{n}{imp\PYZus{}cscore\PYZus{}IQR}\PY{o}{*}\PY{l+m+mf}{1.5}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{imp\PYZus{}cscore\PYZus{}IQR = }\PY{l+s+s2}{\PYZdq{}}\PY{o}{+}\PY{n+nb}{str}\PY{p}{(}\PY{n}{imp\PYZus{}cscore\PYZus{}IQR}\PY{p}{)}\PY{p}{)}
+         
+         
+         \PY{n}{pref\PYZus{}cust\PYZus{}prob\PYZus{}Q1} \PY{o}{=} \PY{n}{crdit\PYZus{}raw}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{pref\PYZus{}cust\PYZus{}prob}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{quantile}\PY{p}{(}\PY{l+m+mf}{0.25}\PY{p}{)}
+         \PY{n}{pref\PYZus{}cust\PYZus{}prob\PYZus{}Q3} \PY{o}{=} \PY{n}{crdit\PYZus{}raw}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{pref\PYZus{}cust\PYZus{}prob}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{quantile}\PY{p}{(}\PY{l+m+mf}{0.75}\PY{p}{)}
+         \PY{n}{pref\PYZus{}cust\PYZus{}prob\PYZus{}IQR} \PY{o}{=} \PY{n}{pref\PYZus{}cust\PYZus{}prob\PYZus{}Q3} \PY{o}{\PYZhy{}} \PY{n}{pref\PYZus{}cust\PYZus{}prob\PYZus{}Q1}
+         \PY{n}{pref\PYZus{}cust\PYZus{}prob\PYZus{}min}\PY{o}{=}\PY{n}{pref\PYZus{}cust\PYZus{}prob\PYZus{}Q1} \PY{o}{\PYZhy{}} \PY{p}{(}\PY{n}{pref\PYZus{}cust\PYZus{}prob\PYZus{}IQR}\PY{o}{*}\PY{l+m+mf}{1.5}\PY{p}{)}
+         \PY{n}{pref\PYZus{}cust\PYZus{}prob\PYZus{}max}\PY{o}{=}\PY{n}{pref\PYZus{}cust\PYZus{}prob\PYZus{}Q3} \PY{o}{+} \PY{p}{(}\PY{n}{pref\PYZus{}cust\PYZus{}prob\PYZus{}IQR}\PY{o}{*}\PY{l+m+mf}{1.5}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{pref\PYZus{}cust\PYZus{}prob\PYZus{}IQR = }\PY{l+s+s2}{\PYZdq{}}\PY{o}{+}\PY{n+nb}{str}\PY{p}{(}\PY{n}{pref\PYZus{}cust\PYZus{}prob\PYZus{}IQR}\PY{p}{)}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{p}{)}
+         \PY{n+nb}{print} \PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{risk\PYZus{}score\PYZus{}min =}\PY{l+s+s2}{\PYZdq{}}\PY{o}{+}\PY{n+nb}{str}\PY{p}{(}\PY{n}{risk\PYZus{}score\PYZus{}min}\PY{p}{)} \PY{o}{+}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{ ::::: }\PY{l+s+s2}{\PYZdq{}}\PY{o}{+}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{risk\PYZus{}score\PYZus{}max =}\PY{l+s+s2}{\PYZdq{}}\PY{o}{+}\PY{n+nb}{str}\PY{p}{(}\PY{n}{risk\PYZus{}score\PYZus{}max}\PY{p}{)}\PY{p}{)}
+         \PY{n+nb}{print} \PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{imp\PYZus{}cscore\PYZus{}min =}\PY{l+s+s2}{\PYZdq{}}\PY{o}{+}\PY{n+nb}{str}\PY{p}{(}\PY{n}{imp\PYZus{}cscore\PYZus{}min}\PY{p}{)} \PY{o}{+}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{ ::::: }\PY{l+s+s2}{\PYZdq{}}\PY{o}{+}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{imp\PYZus{}cscore\PYZus{}max =}\PY{l+s+s2}{\PYZdq{}}\PY{o}{+}\PY{n+nb}{str}\PY{p}{(}\PY{n}{imp\PYZus{}cscore\PYZus{}max}\PY{p}{)}\PY{p}{)}
+         \PY{n+nb}{print} \PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{pref\PYZus{}cust\PYZus{}prob\PYZus{}min =}\PY{l+s+s2}{\PYZdq{}}\PY{o}{+}\PY{n+nb}{str}\PY{p}{(}\PY{n}{pref\PYZus{}cust\PYZus{}prob\PYZus{}min}\PY{p}{)} \PY{o}{+}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{ ::::: }\PY{l+s+s2}{\PYZdq{}}\PY{o}{+}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{pref\PYZus{}cust\PYZus{}prob\PYZus{}max =}\PY{l+s+s2}{\PYZdq{}}\PY{o}{+}\PY{n+nb}{str}\PY{p}{(}\PY{n}{pref\PYZus{}cust\PYZus{}prob\PYZus{}max}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+risk\_score\_IQR = 121.25380374369252
+imp\_cscore\_IQR = 127.0
+pref\_cust\_prob\_IQR = 0.30292516581097373
+
+risk\_score\_min =427.35047536172647 ::::: risk\_score\_max =912.3656903364965
+imp\_cscore\_min =409.5 ::::: imp\_cscore\_max =917.5
+pref\_cust\_prob\_min =-0.2974231051514481 ::::: pref\_cust\_prob\_max =0.9142775580924468
+
+    \end{Verbatim}
+
+    \subsubsection{The above gives range of each IQR. Then we remove all th
+outliers from all the 3
+columsn}\label{the-above-gives-range-of-each-iqr.-then-we-remove-all-th-outliers-from-all-the-3-columsn}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}15}]:} \PY{n}{credit\PYZus{}no\PYZus{}outliers} \PY{o}{=} \PY{n}{crdit\PYZus{}raw}\PY{o}{.}\PY{n}{loc}\PY{p}{[}\PY{p}{(}\PY{n}{crdit\PYZus{}raw}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{RiskScore}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{\PYZgt{}} \PY{n}{risk\PYZus{}score\PYZus{}min}\PY{p}{)} \PY{o}{\PYZam{}} \PY{p}{(}\PY{n}{crdit\PYZus{}raw}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{RiskScore}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{\PYZlt{}} \PY{n}{risk\PYZus{}score\PYZus{}max}\PY{p}{)}\PY{p}{]}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}16}]:} \PY{n}{credit\PYZus{}no\PYZus{}outliers}\PY{o}{.}\PY{n}{describe}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}16}]:}          customer\_id     est\_income     hold\_bal  pref\_cust\_prob   imp\_cscore  \textbackslash{}
+         count    9926.000000    9926.000000  9926.000000     9926.000000  9926.000000   
+         mean   497043.859057   65870.077277    20.980726        0.329679   662.437236   
+         std    287413.244562   31106.451817    18.845011        0.223421    90.507851   
+         min       244.000000       2.054543    -2.140206        0.001781   500.000000   
+         25\%    245155.500000   39148.645696     6.154399        0.157192   600.000000   
+         50\%    496893.500000   76926.365168    11.968306        0.273050   655.000000   
+         75\%    745531.500000   91082.947495    32.258555        0.459951   727.000000   
+         max    999870.000000  150538.809704    81.759632        1.144357   849.000000   
+         
+                  RiskScore  imp\_crediteval   axio\_score  
+         count  9926.000000     9926.000000  9926.000000  
+         mean    669.834437       25.688243     0.393086  
+         std      87.192262        1.887875     0.288209  
+         min     428.033014       21.363123     0.000092  
+         25\%     609.626986       24.292013     0.139439  
+         50\%     669.379043       25.610196     0.337421  
+         75\%     729.979109       27.060501     0.624833  
+         max     911.181969       30.131214     1.000000  
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}17}]:} \PY{n}{credit\PYZus{}no\PYZus{}outliers} \PY{o}{=} \PY{n}{credit\PYZus{}no\PYZus{}outliers}\PY{o}{.}\PY{n}{loc}\PY{p}{[}\PY{p}{(}\PY{n}{credit\PYZus{}no\PYZus{}outliers}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{imp\PYZus{}cscore}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{\PYZgt{}} \PY{n}{imp\PYZus{}cscore\PYZus{}min}\PY{p}{)} \PY{o}{\PYZam{}} \PY{p}{(}\PY{n}{credit\PYZus{}no\PYZus{}outliers}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{imp\PYZus{}cscore}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{\PYZlt{}} \PY{n}{imp\PYZus{}cscore\PYZus{}max}\PY{p}{)}\PY{p}{]}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}18}]:} \PY{n}{credit\PYZus{}no\PYZus{}outliers}\PY{o}{.}\PY{n}{describe}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}18}]:}          customer\_id     est\_income     hold\_bal  pref\_cust\_prob   imp\_cscore  \textbackslash{}
+         count    9926.000000    9926.000000  9926.000000     9926.000000  9926.000000   
+         mean   497043.859057   65870.077277    20.980726        0.329679   662.437236   
+         std    287413.244562   31106.451817    18.845011        0.223421    90.507851   
+         min       244.000000       2.054543    -2.140206        0.001781   500.000000   
+         25\%    245155.500000   39148.645696     6.154399        0.157192   600.000000   
+         50\%    496893.500000   76926.365168    11.968306        0.273050   655.000000   
+         75\%    745531.500000   91082.947495    32.258555        0.459951   727.000000   
+         max    999870.000000  150538.809704    81.759632        1.144357   849.000000   
+         
+                  RiskScore  imp\_crediteval   axio\_score  
+         count  9926.000000     9926.000000  9926.000000  
+         mean    669.834437       25.688243     0.393086  
+         std      87.192262        1.887875     0.288209  
+         min     428.033014       21.363123     0.000092  
+         25\%     609.626986       24.292013     0.139439  
+         50\%     669.379043       25.610196     0.337421  
+         75\%     729.979109       27.060501     0.624833  
+         max     911.181969       30.131214     1.000000  
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}19}]:} \PY{n}{credit\PYZus{}no\PYZus{}outliers} \PY{o}{=} \PY{n}{credit\PYZus{}no\PYZus{}outliers}\PY{o}{.}\PY{n}{loc}\PY{p}{[}\PY{p}{(}\PY{n}{crdit\PYZus{}raw}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{pref\PYZus{}cust\PYZus{}prob}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{\PYZgt{}} \PY{n}{pref\PYZus{}cust\PYZus{}prob\PYZus{}min}\PY{p}{)} \PY{o}{\PYZam{}} \PY{p}{(}\PY{n}{credit\PYZus{}no\PYZus{}outliers}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{pref\PYZus{}cust\PYZus{}prob}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{\PYZlt{}} \PY{n}{pref\PYZus{}cust\PYZus{}prob\PYZus{}max}\PY{p}{)}\PY{p}{]}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}20}]:} \PY{n}{credit\PYZus{}no\PYZus{}outliers}\PY{o}{.}\PY{n}{describe}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}20}]:}          customer\_id     est\_income     hold\_bal  pref\_cust\_prob   imp\_cscore  \textbackslash{}
+         count    9784.000000    9784.000000  9784.000000     9784.000000  9784.000000   
+         mean   497751.719338   65885.609009    20.978336        0.320319   662.473835   
+         std    287420.840698   31106.356834    18.848666        0.210902    90.561729   
+         min       244.000000       2.054543    -2.140206        0.001781   500.000000   
+         25\%    245930.250000   39181.333217     6.150577        0.155504   600.000000   
+         50\%    497614.000000   76955.172160    11.922362        0.268817   655.000000   
+         75\%    745984.500000   91137.966126    32.287644        0.449736   727.000000   
+         max    999870.000000  150538.809704    81.759632        0.914256   849.000000   
+         
+                  RiskScore  imp\_crediteval   axio\_score  
+         count  9784.000000     9784.000000  9784.000000  
+         mean    669.869725       25.689637     0.393484  
+         std      87.116198        1.889197     0.288437  
+         min     428.033014       21.363123     0.000092  
+         25\%     609.627786       24.294207     0.139600  
+         50\%     669.493442       25.611903     0.337841  
+         75\%     729.993009       27.064328     0.625474  
+         max     911.181969       30.131214     1.000000  
+\end{Verbatim}
+            
+    \subsubsection{Removed roughly 280 outliers from the
+dataset}\label{removed-roughly-280-outliers-from-the-dataset}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}21}]:} \PY{n}{credit\PYZus{}no\PYZus{}outliers}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}21}]:}    customer\_id demographic\_slice country\_reg ad\_exp    est\_income   hold\_bal  \textbackslash{}
+         0       713782           AX03efs           W      N  33407.901749   3.000000   
+         1       515901           AX03efs           E      N  19927.533533  20.257927   
+         2        95166           AX03efs           W      Y  51222.470997   4.000000   
+         3       425557           AX03efs           E      Y  67211.587467  18.653631   
+         4       624581           AX03efs           W      N  20093.342158   4.000000   
+         
+            pref\_cust\_prob  imp\_cscore   RiskScore  imp\_crediteval  axio\_score  \textbackslash{}
+         0        0.531112         619  503.249027       23.977827    0.137289   
+         1        0.297439         527  820.108146       22.986398    0.052264   
+         2        0.018463         606  586.605795       24.939219    0.452035   
+         3        0.089344         585  634.701982       24.841147    0.564619   
+         4        0.094948         567  631.949979       24.679363    0.917304   
+         
+            card\_offer  
+         0       False  
+         1       False  
+         2       False  
+         3       False  
+         4       False  
+\end{Verbatim}
+            
+    Now we have 3 columns with string values., demographic\_slice,
+country\_reg, ad\_exp. We will drop columns which are irrelevant or
+convert them into numerical discrete values.
+
+    Checking for dsitinct demographic\_slice
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}22}]:} \PY{n}{credit\PYZus{}no\PYZus{}outliers}\PY{o}{.}\PY{n}{demographic\PYZus{}slice}\PY{o}{.}\PY{n}{unique}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}22}]:} array(['AX03efs', 'BWEsk45', 'CARDIF2', 'DERS3w5'], dtype=object)
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}23}]:} \PY{n}{credit\PYZus{}no\PYZus{}outliers}\PY{o}{.}\PY{n}{country\PYZus{}reg}\PY{o}{.}\PY{n}{unique}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}23}]:} array(['W', 'E'], dtype=object)
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}24}]:} \PY{n}{credit\PYZus{}no\PYZus{}outliers}\PY{o}{.}\PY{n}{ad\PYZus{}exp}\PY{o}{.}\PY{n}{unique}\PY{p}{(}\PY{p}{)}
+         \PY{n}{credit\PYZus{}no\PYZus{}outliers}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ad\PYZus{}exp}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{credit\PYZus{}no\PYZus{}outliers}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ad\PYZus{}exp}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{map}\PY{p}{(}\PY{p}{\PYZob{}}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Y}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{l+m+mi}{1}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{N}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{l+m+mi}{0}\PY{p}{\PYZcb{}}\PY{p}{)}
+         \PY{n}{credit\PYZus{}no\PYZus{}outliers}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}24}]:}    customer\_id demographic\_slice country\_reg  ad\_exp    est\_income   hold\_bal  \textbackslash{}
+         0       713782           AX03efs           W       0  33407.901749   3.000000   
+         1       515901           AX03efs           E       0  19927.533533  20.257927   
+         2        95166           AX03efs           W       1  51222.470997   4.000000   
+         3       425557           AX03efs           E       1  67211.587467  18.653631   
+         4       624581           AX03efs           W       0  20093.342158   4.000000   
+         
+            pref\_cust\_prob  imp\_cscore   RiskScore  imp\_crediteval  axio\_score  \textbackslash{}
+         0        0.531112         619  503.249027       23.977827    0.137289   
+         1        0.297439         527  820.108146       22.986398    0.052264   
+         2        0.018463         606  586.605795       24.939219    0.452035   
+         3        0.089344         585  634.701982       24.841147    0.564619   
+         4        0.094948         567  631.949979       24.679363    0.917304   
+         
+            card\_offer  
+         0       False  
+         1       False  
+         2       False  
+         3       False  
+         4       False  
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}25}]:} \PY{n}{credit\PYZus{}sklearn} \PY{o}{=} \PY{n}{credit\PYZus{}no\PYZus{}outliers}\PY{o}{.}\PY{n}{copy}\PY{p}{(}\PY{p}{)}
+         \PY{n}{lb\PYZus{}make} \PY{o}{=} \PY{n}{LabelEncoder}\PY{p}{(}\PY{p}{)}
+         \PY{n}{credit\PYZus{}sklearn}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{demographic\PYZus{}slice\PYZus{}encoded}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{lb\PYZus{}make}\PY{o}{.}\PY{n}{fit\PYZus{}transform}\PY{p}{(}\PY{n}{credit\PYZus{}no\PYZus{}outliers}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{demographic\PYZus{}slice}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
+         \PY{n}{credit\PYZus{}sklearn}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{country\PYZus{}reg\PYZus{}encoded}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{lb\PYZus{}make}\PY{o}{.}\PY{n}{fit\PYZus{}transform}\PY{p}{(}\PY{n}{credit\PYZus{}no\PYZus{}outliers}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{country\PYZus{}reg}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
+         \PY{n}{credit\PYZus{}sklearn}\PY{o}{=}\PY{n}{credit\PYZus{}sklearn}\PY{o}{.}\PY{n}{drop}\PY{p}{(}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{demographic\PYZus{}slice}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{country\PYZus{}reg}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}
+         \PY{n}{credit\PYZus{}sklearn}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}25}]:}    customer\_id  ad\_exp    est\_income   hold\_bal  pref\_cust\_prob  imp\_cscore  \textbackslash{}
+         0       713782       0  33407.901749   3.000000        0.531112         619   
+         1       515901       0  19927.533533  20.257927        0.297439         527   
+         2        95166       1  51222.470997   4.000000        0.018463         606   
+         3       425557       1  67211.587467  18.653631        0.089344         585   
+         4       624581       0  20093.342158   4.000000        0.094948         567   
+         
+             RiskScore  imp\_crediteval  axio\_score  card\_offer  \textbackslash{}
+         0  503.249027       23.977827    0.137289       False   
+         1  820.108146       22.986398    0.052264       False   
+         2  586.605795       24.939219    0.452035       False   
+         3  634.701982       24.841147    0.564619       False   
+         4  631.949979       24.679363    0.917304       False   
+         
+            demographic\_slice\_encoded  country\_reg\_encoded  
+         0                          0                    1  
+         1                          0                    0  
+         2                          0                    1  
+         3                          0                    0  
+         4                          0                    1  
+\end{Verbatim}
+            
+    \subsubsection{Dropped the string column after encoding them to
+numerical
+values.}\label{dropped-the-string-column-after-encoding-them-to-numerical-values.}
+
+    \subsubsection{Data preprocessing complete. Now we split the data into
+training and testing data and run various classifer algorithm to get the
+best
+model}\label{data-preprocessing-complete.-now-we-split-the-data-into-training-and-testing-data-and-run-various-classifer-algorithm-to-get-the-best-model}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}26}]:} \PY{n}{X}\PY{o}{=}\PY{n}{credit\PYZus{}sklearn}\PY{o}{.}\PY{n}{drop}\PY{p}{(}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{card\PYZus{}offer}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,}\PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}
+         \PY{n}{y}\PY{o}{=}\PY{n}{credit\PYZus{}sklearn}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{card\PYZus{}offer}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+         \PY{n}{X\PYZus{}train}\PY{p}{,} \PY{n}{X\PYZus{}test}\PY{p}{,} \PY{n}{y\PYZus{}train}\PY{p}{,} \PY{n}{y\PYZus{}test} \PY{o}{=} \PY{n}{train\PYZus{}test\PYZus{}split}\PY{p}{(}\PY{n}{X}\PY{p}{,} \PY{n}{y}\PY{p}{,} \PY{n}{test\PYZus{}size}\PY{o}{=}\PY{l+m+mf}{0.33}\PY{p}{,} \PY{n}{random\PYZus{}state}\PY{o}{=}\PY{l+m+mi}{42}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}27}]:} \PY{n}{classifiers} \PY{o}{=} \PY{p}{[}
+             \PY{n}{KNeighborsClassifier}\PY{p}{(}\PY{l+m+mi}{3}\PY{p}{)}\PY{p}{,}
+             \PY{n}{SVC}\PY{p}{(}\PY{n}{kernel}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{rbf}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{C}\PY{o}{=}\PY{l+m+mf}{0.025}\PY{p}{,} \PY{n}{probability}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}\PY{p}{,}
+             \PY{n}{DecisionTreeClassifier}\PY{p}{(}\PY{p}{)}\PY{p}{,}
+             \PY{n}{RandomForestClassifier}\PY{p}{(}\PY{p}{)}\PY{p}{,}
+             \PY{n}{AdaBoostClassifier}\PY{p}{(}\PY{p}{)}\PY{p}{,}
+             \PY{n}{GradientBoostingClassifier}\PY{p}{(}\PY{p}{)}\PY{p}{,}
+             \PY{n}{GaussianNB}\PY{p}{(}\PY{p}{)}\PY{p}{,}
+             \PY{n}{LinearDiscriminantAnalysis}\PY{p}{(}\PY{p}{)}\PY{p}{,}
+             \PY{n}{QuadraticDiscriminantAnalysis}\PY{p}{(}\PY{p}{)}\PY{p}{]}
+         
+         \PY{c+c1}{\PYZsh{} Logging for Visual Comparison}
+         \PY{n}{log\PYZus{}cols}\PY{o}{=}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Classifier}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Accuracy}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Log Loss}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}
+         \PY{n}{log} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{n}{columns}\PY{o}{=}\PY{n}{log\PYZus{}cols}\PY{p}{)}
+         
+         \PY{k}{for} \PY{n}{clf} \PY{o+ow}{in} \PY{n}{classifiers}\PY{p}{:}
+             \PY{n}{clf}\PY{o}{.}\PY{n}{fit}\PY{p}{(}\PY{n}{X\PYZus{}train}\PY{p}{,} \PY{n}{y\PYZus{}train}\PY{p}{)}
+             \PY{n}{name} \PY{o}{=} \PY{n}{clf}\PY{o}{.}\PY{n+nv+vm}{\PYZus{}\PYZus{}class\PYZus{}\PYZus{}}\PY{o}{.}\PY{n+nv+vm}{\PYZus{}\PYZus{}name\PYZus{}\PYZus{}}
+             
+             \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{=}\PY{l+s+s2}{\PYZdq{}}\PY{o}{*}\PY{l+m+mi}{30}\PY{p}{)}
+             \PY{n+nb}{print}\PY{p}{(}\PY{n}{name}\PY{p}{)}
+             
+             \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{****Results****}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+             \PY{n}{train\PYZus{}predictions} \PY{o}{=} \PY{n}{clf}\PY{o}{.}\PY{n}{predict}\PY{p}{(}\PY{n}{X\PYZus{}test}\PY{p}{)}
+             \PY{n}{acc} \PY{o}{=} \PY{n}{accuracy\PYZus{}score}\PY{p}{(}\PY{n}{y\PYZus{}test}\PY{p}{,} \PY{n}{train\PYZus{}predictions}\PY{p}{)}
+             \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Accuracy: }\PY{l+s+si}{\PYZob{}:.4\PYZpc{}\PYZcb{}}\PY{l+s+s2}{\PYZdq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{acc}\PY{p}{)}\PY{p}{)}
+             
+             \PY{n}{train\PYZus{}predictions} \PY{o}{=} \PY{n}{clf}\PY{o}{.}\PY{n}{predict\PYZus{}proba}\PY{p}{(}\PY{n}{X\PYZus{}test}\PY{p}{)}
+             \PY{n}{ll} \PY{o}{=} \PY{n}{log\PYZus{}loss}\PY{p}{(}\PY{n}{y\PYZus{}test}\PY{p}{,} \PY{n}{train\PYZus{}predictions}\PY{p}{)}
+             \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Log Loss: }\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s2}{\PYZdq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{ll}\PY{p}{)}\PY{p}{)}
+             
+             \PY{n}{log\PYZus{}entry} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{p}{[}\PY{p}{[}\PY{n}{name}\PY{p}{,} \PY{n}{acc}\PY{o}{*}\PY{l+m+mi}{100}\PY{p}{,} \PY{n}{ll}\PY{p}{]}\PY{p}{]}\PY{p}{,} \PY{n}{columns}\PY{o}{=}\PY{n}{log\PYZus{}cols}\PY{p}{)}
+             \PY{n}{log} \PY{o}{=} \PY{n}{log}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{log\PYZus{}entry}\PY{p}{)}
+             
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{=}\PY{l+s+s2}{\PYZdq{}}\PY{o}{*}\PY{l+m+mi}{30}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+==============================
+KNeighborsClassifier
+****Results****
+Accuracy: 82.0378\%
+Log Loss: 2.775744407843222
+==============================
+SVC
+****Results****
+Accuracy: 86.0948\%
+Log Loss: 0.4033340696906456
+==============================
+DecisionTreeClassifier
+****Results****
+Accuracy: 96.5934\%
+Log Loss: 1.176607433707085
+==============================
+RandomForestClassifier
+****Results****
+Accuracy: 97.0889\%
+Log Loss: 0.11013802545089481
+==============================
+AdaBoostClassifier
+****Results****
+Accuracy: 98.4825\%
+Log Loss: 0.5510582747398198
+==============================
+GradientBoostingClassifier
+****Results****
+Accuracy: 98.1418\%
+Log Loss: 0.055039685247836506
+==============================
+GaussianNB
+****Results****
+Accuracy: 86.0948\%
+Log Loss: 0.36517707423865137
+==============================
+LinearDiscriminantAnalysis
+****Results****
+Accuracy: 95.2307\%
+Log Loss: 0.11363859589961241
+==============================
+QuadraticDiscriminantAnalysis
+****Results****
+Accuracy: 96.1288\%
+Log Loss: 0.08619483375426466
+==============================
+
+    \end{Verbatim}
+
+    \subsection{We have a winner here with AdaBoost having the highest
+accuracy and lowest Loss. So we will use that model to predict the
+future
+details.}\label{we-have-a-winner-here-with-adaboost-having-the-highest-accuracy-and-lowest-loss.-so-we-will-use-that-model-to-predict-the-future-details.}
+
+\subsection{Before doing that we need to apply each and every
+transformation on our predication
+data}\label{before-doing-that-we-need-to-apply-each-and-every-transformation-on-our-predication-data}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}28}]:} \PY{n}{pred} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}csv}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{test.csv}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}29}]:} \PY{n}{pred}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}29}]:}    customer\_id demographic\_slice country\_reg ad\_exp    est\_income   hold\_bal  \textbackslash{}
+         0       596723           AX03efs           W      N  26323.092380   3.000000   
+         1       841834           AX03efs           E      Y  67374.621650  17.861095   
+         2       402401           AX03efs           E      N   1728.369713  21.604489   
+         3       734431           AX03efs           E      Y  15814.210260  22.058403   
+         4       739547           AX03efs           W      Y  45233.588190   1.000000   
+         
+            pref\_cust\_prob  imp\_cscore   RiskScore  imp\_crediteval  axio\_score  \textbackslash{}
+         0        0.461364         603  505.509062       23.806688    0.351222   
+         1        0.473517         650  466.158076       26.068803    0.080106   
+         2        0.486220         606  603.346280       23.628955    0.208180   
+         3        0.462249         530  747.158221       22.533957    0.080122   
+         4        0.541660         640  704.781194       24.298782    0.667270   
+         
+            card\_offer  
+         0         NaN  
+         1         NaN  
+         2         NaN  
+         3         NaN  
+         4         NaN  
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}30}]:} \PY{n}{pred}\PY{o}{.}\PY{n}{isnull}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{any}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}30}]:} customer\_id          False
+         demographic\_slice    False
+         country\_reg          False
+         ad\_exp               False
+         est\_income           False
+         hold\_bal             False
+         pref\_cust\_prob       False
+         imp\_cscore           False
+         RiskScore            False
+         imp\_crediteval       False
+         axio\_score           False
+         card\_offer            True
+         dtype: bool
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}31}]:} \PY{n}{pred}\PY{o}{=} \PY{n}{pred}\PY{o}{.}\PY{n}{drop}\PY{p}{(}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{card\PYZus{}offer}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,}\PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}32}]:} \PY{n}{pred}\PY{o}{.}\PY{n}{demographic\PYZus{}slice}\PY{o}{.}\PY{n}{unique}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}32}]:} array(['AX03efs', 'BWEsk45', 'CARDIF2', 'DERS3w5'], dtype=object)
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}33}]:} \PY{n}{pred}\PY{o}{.}\PY{n}{country\PYZus{}reg}\PY{o}{.}\PY{n}{unique}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}33}]:} array(['W', 'E'], dtype=object)
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}34}]:} \PY{n}{pred}\PY{o}{.}\PY{n}{ad\PYZus{}exp}\PY{o}{.}\PY{n}{unique}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}34}]:} array(['N', 'Y'], dtype=object)
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}35}]:} \PY{n}{pred}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ad\PYZus{}exp}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{pred}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ad\PYZus{}exp}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{map}\PY{p}{(}\PY{p}{\PYZob{}}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Y}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{l+m+mi}{1}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{N}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{l+m+mi}{0}\PY{p}{\PYZcb{}}\PY{p}{)}
+         \PY{n}{pred}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}35}]:}    customer\_id demographic\_slice country\_reg  ad\_exp    est\_income   hold\_bal  \textbackslash{}
+         0       596723           AX03efs           W       0  26323.092380   3.000000   
+         1       841834           AX03efs           E       1  67374.621650  17.861095   
+         2       402401           AX03efs           E       0   1728.369713  21.604489   
+         3       734431           AX03efs           E       1  15814.210260  22.058403   
+         4       739547           AX03efs           W       1  45233.588190   1.000000   
+         
+            pref\_cust\_prob  imp\_cscore   RiskScore  imp\_crediteval  axio\_score  
+         0        0.461364         603  505.509062       23.806688    0.351222  
+         1        0.473517         650  466.158076       26.068803    0.080106  
+         2        0.486220         606  603.346280       23.628955    0.208180  
+         3        0.462249         530  747.158221       22.533957    0.080122  
+         4        0.541660         640  704.781194       24.298782    0.667270  
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}36}]:} \PY{n}{pred\PYZus{}sklearn} \PY{o}{=} \PY{n}{pred}\PY{o}{.}\PY{n}{copy}\PY{p}{(}\PY{p}{)}
+         \PY{n}{lb\PYZus{}make} \PY{o}{=} \PY{n}{LabelEncoder}\PY{p}{(}\PY{p}{)}
+         \PY{n}{pred\PYZus{}sklearn}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{demographic\PYZus{}slice\PYZus{}encoded}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{lb\PYZus{}make}\PY{o}{.}\PY{n}{fit\PYZus{}transform}\PY{p}{(}\PY{n}{pred}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{demographic\PYZus{}slice}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
+         \PY{n}{pred\PYZus{}sklearn}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{country\PYZus{}reg\PYZus{}encoded}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{lb\PYZus{}make}\PY{o}{.}\PY{n}{fit\PYZus{}transform}\PY{p}{(}\PY{n}{pred}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{country\PYZus{}reg}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
+         \PY{n}{pred\PYZus{}sklearn}\PY{o}{=}\PY{n}{pred\PYZus{}sklearn}\PY{o}{.}\PY{n}{drop}\PY{p}{(}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{demographic\PYZus{}slice}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{country\PYZus{}reg}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}
+         \PY{n}{pred\PYZus{}sklearn}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}36}]:}    customer\_id  ad\_exp    est\_income   hold\_bal  pref\_cust\_prob  imp\_cscore  \textbackslash{}
+         0       596723       0  26323.092380   3.000000        0.461364         603   
+         1       841834       1  67374.621650  17.861095        0.473517         650   
+         2       402401       0   1728.369713  21.604489        0.486220         606   
+         3       734431       1  15814.210260  22.058403        0.462249         530   
+         4       739547       1  45233.588190   1.000000        0.541660         640   
+         
+             RiskScore  imp\_crediteval  axio\_score  demographic\_slice\_encoded  \textbackslash{}
+         0  505.509062       23.806688    0.351222                          0   
+         1  466.158076       26.068803    0.080106                          0   
+         2  603.346280       23.628955    0.208180                          0   
+         3  747.158221       22.533957    0.080122                          0   
+         4  704.781194       24.298782    0.667270                          0   
+         
+            country\_reg\_encoded  
+         0                    1  
+         1                    0  
+         2                    0  
+         3                    0  
+         4                    1  
+\end{Verbatim}
+            
+    Now the above data is ready to be applied to our learning model
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}37}]:} \PY{n}{ada} \PY{o}{=} \PY{n}{AdaBoostClassifier}\PY{p}{(}\PY{p}{)}\PY{p}{;}
+         \PY{n}{model} \PY{o}{=} \PY{n}{ada}\PY{o}{.}\PY{n}{fit}\PY{p}{(}\PY{n}{X\PYZus{}train}\PY{p}{,} \PY{n}{y\PYZus{}train}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}38}]:} \PY{n}{y\PYZus{}pred}\PY{o}{=}\PY{n}{model}\PY{o}{.}\PY{n}{predict}\PY{p}{(}\PY{n}{pred\PYZus{}sklearn}\PY{p}{)}
+         \PY{n}{y\PYZus{}pred}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}38}]:} array([False, False, False, {\ldots},  True,  True, False])
+\end{Verbatim}
+            
+    \subsection{Now that we have the prediction ready. Writing the
+prediction to a csv file named
+ds4.csv}\label{now-that-we-have-the-prediction-ready.-writing-the-prediction-to-a-csv-file-named-ds4.csv}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}39}]:} \PY{k}{def} \PY{n+nf}{write\PYZus{}to\PYZus{}csv}\PY{p}{(}\PY{n}{predction}\PY{p}{)}\PY{p}{:}
+             \PY{n}{submission} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{p}{)}
+             \PY{n}{submission}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Id}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{pred\PYZus{}sklearn}\PY{o}{.}\PY{n}{customer\PYZus{}id}
+             \PY{n}{submission}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Card\PYZus{}Offer}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{=}\PY{n}{predction}
+             \PY{n}{submission}\PY{o}{.}\PY{n}{to\PYZus{}csv}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ds4.csv}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{index}\PY{o}{=}\PY{k+kc}{False}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}40}]:} \PY{n}{write\PYZus{}to\PYZus{}csv}\PY{p}{(}\PY{n}{y\PYZus{}pred}\PY{p}{)}
+\end{Verbatim}
+
+
+    \section{End of NoteBook. Refer ds4.csv to find predictions along with
+customer
+id}\label{end-of-notebook.-refer-ds4.csv-to-find-predictions-along-with-customer-id}
+
+
+    % Add a bibliography block to the postdoc
+    
+    
+    
+    \end{document}
